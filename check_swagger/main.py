@@ -4,7 +4,10 @@ from __future__ import unicode_literals
 
 import argparse
 import codecs
+import os
 import sys
+import urllib
+import urlparse
 from fnmatch import fnmatch
 
 import swagger_spec_validator.util
@@ -23,7 +26,8 @@ def main():
             if any(fnmatch(filename, pat) for pat in args.exclude or ()):
                 continue
             with codecs.open(filename, encoding='utf-8') as f:
-                url = filename + '#'
+                path = os.path.abspath(filename)
+                url = urlparse.urljoin(u'file:', urllib.pathname2url(path))
                 spec = yaml.safe_load(f)
                 if not isinstance(spec, dict):
                     raise SwaggerValidationError('root node is not a mapping')
