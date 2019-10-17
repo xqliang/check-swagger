@@ -7,7 +7,7 @@ setup(
     name='check_swagger',
     description='pre-commit hook for validation swagger specs',
     url='https://github.com/jstewmon/check-swagger',
-    version='0.1.2',
+    version='0.1.4',
     author='Jonathan Stewmon',
     author_email='jstewmon@gmail.com',
     classifiers=[
@@ -23,8 +23,9 @@ setup(
     ],
     packages=find_packages('.', exclude=('tests*', 'testing*')),
     install_requires=[
-        'PyYAML',
-        'swagger_spec_validator',
+        'PyYAML==3.13',
+        'swagger_spec_validator==2.4.3',
+        'more-itertools<=5.0.0',
     ],
     extras_require={
         'dev': [
